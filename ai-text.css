@@ -1,0 +1,106 @@
+.ai-text-icon {
+    margin-left: 5px;
+    color: blue;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.ai-text-modal {
+    padding: 20px;
+    border: none;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 70%;
+    width: 70%;
+    overflow-y: auto;
+}
+
+.ai-text-response {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.ai-text-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tone-label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.tone-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.ai-text-tone-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ai-text-tone-button.disabled-button {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.ai-text-tone-button:hover {
+    background-color: #0056b3;
+}
+
+.modal-separator {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.apply-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.apply-button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.close-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.close-button:hover, .apply-button:hover {
+    opacity: 0.8;
+}
