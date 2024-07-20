@@ -71,6 +71,12 @@ document.addEventListener('DOMContentLoaded', function () {
         applyButton.className = 'apply-button';
         applyButton.innerText = 'Apply';
         applyButton.disabled = true;
+
+        const loadingSpinner = document.createElement('span'); // New loading spinner
+        loadingSpinner.className = 'loading-spinner';
+        loadingSpinner.style.display = 'none';
+        loadingSpinner.innerHTML = '✨'; // Use a magic icon for the spinner
+
         applyButton.addEventListener('click', () => {
             applyChangesToTextarea(targetElement, responseDiv.innerHTML);
             modal.close();
@@ -80,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         actionButtonsDiv.className = 'action-buttons';
         actionButtonsDiv.appendChild(applyButton);
         actionButtonsDiv.appendChild(closeButton);
+        actionButtonsDiv.appendChild(loadingSpinner); // Append the spinner
 
         modal.appendChild(responseDiv);
         modal.appendChild(buttonsDiv);
@@ -90,6 +97,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function openModal(targetElement) {
+        const existingModal = document.querySelector('.ai-text-modal'); // Remove existing modal
+        if (existingModal) {
+            existingModal.remove();
+        }
+
         const modal = createModalContent(targetElement, config);
         document.body.appendChild(modal);
         modal.showModal();
@@ -110,11 +122,15 @@ document.addEventListener('DOMContentLoaded', function () {
     function applyTone(button, tone, text, modal) {
         const responseDiv = modal.querySelector('.ai-text-response');
         const applyButton = modal.querySelector('.apply-button');
+        const loadingSpinner = modal.querySelector('.loading-spinner'); // Select the spinner
 
         // Disable tone buttons
         const toneButtons = modal.querySelectorAll('.ai-text-tone-button');
         toneButtons.forEach(btn => btn.disabled = true);
         button.classList.add('disabled-button');
+
+        // Show the spinner
+        loadingSpinner.style.display = 'inline-block';
 
         // Simulate API call to AI
         fetchAIResponse(text, config.tones[tone], config)
@@ -130,6 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 responseDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
             })
             .finally(() => {
+                // Hide the spinner
+                loadingSpinner.style.display = 'none';
+
                 toneButtons.forEach(btn => btn.disabled = false);
                 button.classList.remove('disabled-button');
             });
@@ -151,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }],
                 generationConfig: {
                     maxOutputTokens: 8192,
-                    //temperature: 1.0
                 }
             };
         }
@@ -163,18 +181,18 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: JSON.stringify(postData)
         })
-            .then(response => response.json())
-            .then(data => {
-                if (config.llm_provider === 'gemini') {
-                    if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0]) {
-                        return data.candidates[0].content.parts[0].text.trim();
-                    } else {
-                        throw new Error("Unexpected response format");
-                    }
+        .then(response => response.json())
+        .then(data => {
+            if (config.llm_provider === 'gemini') {
+                if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0]) {
+                    return data.candidates[0].content.parts[0].text.trim();
                 } else {
-                    return data.choices[0].text.trim();
+                    throw new Error("Unexpected response format");
                 }
-            });
+            } else {
+                return data.choices[0].text.trim();
+            }
+        });
     }
 
     function getApiUrl(provider, config) {

@@ -4,55 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Text Plugin</title>
-	<style>
-		textarea {
-			width: 70%;
-			height: 100px;
-			padding: 10px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-			resize: vertical;
-			margin: 0 auto;
-			display: block;
-		}
+    <style>
+        textarea {
+            width: 70%;
+            height: 50px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            margin: 0 auto;
+            display: block;
+        }
 
-		#wrap {
-			display: flex;
-			flex-direction: column;
-		}
-		
-	</style>
+        #wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+    </style>
     <link rel="stylesheet" href="ai-text.css">
-	<script>
-	window.ai_text_config = {
-		"llm_provider": "gemini", // openai, gemini, ollama
-		"llm_model": "gemini-1.5-flash",
-		"llm_key": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-		"tones": {
-			"easy-to-understand": "Rephrase the following text to make it very easy to understand with simple english without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
-			"step-by-step": "Rephrase the following text to make it step by step numbered instructions without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
-			"professional": "Rephrase the following text to make it very professional without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
-			"detailed": "Rephrase the following text to make it very detailed without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
-			"summarize": "Rephrase the following text to make it summarized without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
-		},
-		"target_element": "textarea"
-	};
-	</script>
+    <script>
+        window.ai_text_config = {
+            "llm_provider": "gemini", // openai, gemini, ollama
+            "llm_model": "gemini-1.5-flash",
+            "llm_key": "newkeyxxxxxxxxxxxxxxxxxxxxxxxx", // Updated API key
+            "tones": {
+                "easy-to-understand": "Rephrase the following text to make it very easy to understand with simple english without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
+                "step-by-step": "Rephrase the following text to make it step by step numbered instructions without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
+                "professional": "Rephrase the following text to make it very professional without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
+                "detailed": "Rephrase the following text to make it very detailed without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
+                "summarize": "Rephrase the following text to make it summarized without using any markdown or HTML syntax, your answer must be pure text. Rephrase Text:",
+            },
+            "target_element": "textarea"
+        };
+    </script>
     <script src="ai-text.js" defer></script>
 </head>
 <body>
-	<div id="wrap">
-		<textarea class="ai-text-target">Large language models (LLMs) are machine learning models that can comprehend and generate human language text. They work by analyzing massive data sets of language.</textarea>
-		<hr>
-		<textarea class="ai-text-target">In simpler terms, an LLM is a computer program that has been fed enough examples to be able to recognize and interpret human language or other types of complex data. Many LLMs are trained on data that has been gathered from the Internet — thousands or millions of gigabytes' worth of text. But the quality of the samples impacts how well LLMs will learn natural language, so an LLM's programmers may use a more curated data set.</textarea>
-		<hr>
-		<textarea class="ai-text-target">A large language model (LLM) is a type of artificial intelligence (AI) program that can recognize and generate text, among other tasks. LLMs are trained on huge sets of data — hence the name "large." LLMs are built on machine learning: specifically, a type of neural network called a transformer model.
-	
-			In simpler terms, an LLM is a computer program that has been fed enough examples to be able to recognize and interpret human language or other types of complex data. Many LLMs are trained on data that has been gathered from the Internet — thousands or millions of gigabytes' worth of text. But the quality of the samples impacts how well LLMs will learn natural language, so an LLM's programmers may use a more curated data set.
-			
-			LLMs use a type of machine learning called deep learning in order to understand how characters, words, and sentences function together. Deep learning involves the probabilistic analysis of unstructured data, which eventually enables the deep learning model to recognize distinctions between pieces of content without human intervention.
-			
-			LLMs are then further trained via tuning: they are fine-tuned or prompt-tuned to the particular task that the programmer wants them to do, such as interpreting questions and generating responses, or translating text from one language to another.</textarea>	
-	</div>
+    <div id="wrap">
+        <textarea class="ai-text-target">Large language models (LLMs) are machine learning models that can comprehend and generate human language text. They work by analyzing massive data sets of language.</textarea>
+        <hr>
+        <textarea class="ai-text-target">In simpler terms, an LLM is a computer program that has been fed enough examples to be able to recognize and interpret human language or other types of complex data. Many LLMs are trained on data that has been gathered from the Internet — thousands or millions of gigabytes' worth of text. But the quality of the samples impacts how well LLMs will learn natural language, so an LLM's programmers may use a more curated data set.</textarea>
+        <hr>
+        <textarea class="ai-text-target">A large language model (LLM) is a type of artificial intelligence (AI) program that can recognize and generate text, among other tasks. LLMs are trained on huge sets of data — hence the name "large." LLMs are built on machine learning: specifically, a type of neural network called a transformer model.
+
+        In simpler terms, an LLM is a computer program that has been fed enough examples to be able to recognize and interpret human language or other types of complex data. Many LLMs are trained on data that has been gathered from the Internet — thousands or millions of gigabytes' worth of text. But the quality of the samples impacts how well LLMs will learn natural language, so an LLM's programmers may use a more curated data set.
+        
+        LLMs use a type of machine learning called deep learning in order to understand how characters, words, and sentences function together. Deep learning involves the probabilistic analysis of unstructured data, which eventually enables the deep learning model to recognize distinctions between pieces of content without human intervention.
+        
+        LLMs are then further trained via tuning: they are fine-tuned or prompt-tuned to the particular task that the programmer wants them to do, such as interpreting questions and generating responses, or translating text from one language to another.</textarea>
+        <hr> <!-- Additional textarea for testing -->
+        <textarea class="ai-text-target">This is an additional sample text for testing purposes. It should appear with the magical and professional modal dialog.</textarea>
+    </div>
 </body>
 </html>
