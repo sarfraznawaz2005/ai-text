@@ -49,14 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const toneLabel = document.createElement('p');
         toneLabel.className = 'tone-label';
-        toneLabel.innerText = 'Click a Tone';
+        toneLabel.innerText = 'Click a Style';
         buttonsDiv.appendChild(toneLabel);
 
         const toneButtonsDiv = document.createElement('div');
         toneButtonsDiv.className = 'tone-buttons';
         buttonsDiv.appendChild(toneButtonsDiv);
 
-        Object.keys(config.tones).forEach(tone => {
+        Object.keys(config.styles).forEach(tone => {
             const button = document.createElement('button');
             button.className = 'ai-text-tone-button';
             button.innerText = tone.charAt(0).toUpperCase() + tone.slice(1);
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadingSpinner.style.display = 'inline-block';
 
         // Simulate API call to AI
-        fetchAIResponse(text, config.tones[tone], config)
+        fetchAIResponse(text, config.styles[tone], config)
             .then(response => {
                 responseDiv.innerHTML = response.replace(/\n/g, '<br>'); // Convert new lines to <br> for display
                 responseDiv.style.color = 'black';
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function validateConfig(config) {
-        const requiredFields = ['target_element', 'tones', 'llm_provider', 'llm_model', 'llm_key'];
+        const requiredFields = ['target_element', 'styles', 'llm_provider', 'llm_model', 'llm_key'];
         for (const field of requiredFields) {
             if (!config[field]) {
                 throw new Error(`Missing required configuration field: ${field}`);
