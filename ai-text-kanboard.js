@@ -31,12 +31,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     handleExistingElements();
 
-    document.body.addEventListener('DOMNodeInserted', function (event) {
-        const target = event.target;
-        if (target.nodeType === Node.ELEMENT_NODE && target.matches(config.target_element)) {
-            addIconToElement(target);
-        }
-    });
+  	// Create a new MutationObserver instance
+	const observer = new MutationObserver((mutationsList) => {
+		mutationsList.forEach((mutation) => {
+			if (mutation.type === 'childList') {
+				mutation.addedNodes.forEach((node) => {
+					if (node.nodeType === Node.ELEMENT_NODE && node.matches(config.target_element)) {
+						addIconToElement(node);
+					}
+				});
+			}
+		});
+	});
+
+	// Configure the observer to watch for added nodes in the entire document
+	observer.observe(document.body, {
+		childList: true, // Watch for child nodes being added or removed
+		subtree: true    // Watch across the entire DOM tree
+	});
 
     function createModalContent(targetElement, config) {
         const modal = document.createElement('dialog');
